@@ -1,7 +1,15 @@
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        String str = "madam";
-        String rev = new StringBuilder(str).reverse().toString();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter string: ");
+        String str = sc.nextLine();
+
+        String rev = "";
+        for(int i = str.length() - 1; i >= 0; i--) {
+            rev += str.charAt(i);
+        }
 
         if(str.equals(rev)) {
             System.out.println("Palindrome");
