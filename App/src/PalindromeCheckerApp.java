@@ -1,19 +1,18 @@
-import java.util.*;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String str = "madam";
-
-        Deque<Character> dq = new LinkedList<>();
+        LinkedList<Character> list = new LinkedList<>();
 
         for(char c : str.toCharArray()) {
-            dq.add(c);
+            list.add(c);
         }
 
         boolean isPalindrome = true;
 
-        while(dq.size() > 1) {
-            if(dq.removeFirst() != dq.removeLast()) {
+        while(list.size() > 1) {
+            if(list.removeFirst() != list.removeLast()) {
                 isPalindrome = false;
                 break;
             }
