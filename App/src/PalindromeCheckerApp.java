@@ -1,37 +1,33 @@
-interface PalindromeStrategy {
-    boolean check(String str);
-}
+public class PalindromeCheckerApp {
 
-class ReverseStrategy implements PalindromeStrategy {
-    public boolean check(String str) {
+    static boolean method1(String str) {
         String rev = new StringBuilder(str).reverse().toString();
         return str.equals(rev);
     }
-}
 
-class PalindromeContext {
-    private PalindromeStrategy strategy;
+    static boolean method2(String str) {
+        int i = 0, j = str.length() - 1;
 
-    void setStrategy(PalindromeStrategy strategy) {
-        this.strategy = strategy;
+        while(i < j) {
+            if(str.charAt(i) != str.charAt(j)) return false;
+            i++;
+            j--;
+        }
+        return true;
     }
 
-    boolean execute(String str) {
-        return strategy.check(str);
-    }
-}
-
-public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        PalindromeContext context = new PalindromeContext();
-        context.setStrategy(new ReverseStrategy());
-
         String str = "madam";
 
-        if(context.execute(str)) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
+        long start1 = System.nanoTime();
+        method1(str);
+        long end1 = System.nanoTime();
+
+        long start2 = System.nanoTime();
+        method2(str);
+        long end2 = System.nanoTime();
+
+        System.out.println("Method1 Time: " + (end1 - start1));
+        System.out.println("Method2 Time: " + (end2 - start2));
     }
 }
